@@ -1,0 +1,15 @@
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Harry Potter', 18, '2006-10-29', 'Gryffindor', 'Expecto Patronum', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Ronald Weasley', 18, '2006-04-30', 'Gryffindor', 'Alohomora', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Hermione Granger', 18, '2006-02-04', 'Gryffindor', 'Wingardium Leviosa', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Draco Malfoy', 18, '2006-12-08', 'Slytherin', 'Petrificus Totalus', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Cedrico Diggory', 20, '2004-05-14', 'Huffle-Puffle', 'Expelliarmus', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Gina Weasley', 16, '2008-08-08', 'Gryffindor', 'Stupefy', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Neville Longbottom', 18, '2006-10-15', 'Gryffindor', 'Expelliarmus', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Severus Snape', 40, '1984-02-24', 'Slytherin', 'Sectumsempra', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Albus Dumbledore',72, '1952-03-01', 'Gryffindor', 'Colloportus', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Lord Voldemort', 40, '1984-12-16', 'Slytherin', 'Avada Kedavra', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Sirius Black', 38, '1986-04-02', 'Ravenclaw', 'Obliviate', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Bellatrix Lestrange', 35, '1989-05-17', 'Slytherin', 'Crucio', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Rubeo Hagrid', 42, '1982-12-08', 'Huffle-Puffle', 'Colloportus', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Minerva McGonagall', 51, '1973-01-27', 'Ravenclaw', 'Piertotum Locomotor', '2024-08-19');
+INSERT INTO tb_student (name, age, BIRTH_DATE , house, magic, SUBSCRIPTION_DATE) VALUES ('Dobby', 25, '1999-01-04', 'Elf', 'Snap', '2024-08-19');
