@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap" rel="stylesheet">
+    <!-- /GOOGLE FONTS -->
+    <title>Hogwarts School</title>
+    <style>
+        html, body {
+            height: 100%; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        body {
+            font-family: 'Baskervville SC', serif;
+            background-image: url('assets/hogwarts_background2.png'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            text-align: center; 
+        }
+
+        .content-wrapper {
+            background-color: rgba(128, 128, 128, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            position: absolute; 
+            top: 10px; 
+            left: 10px; 
+            width: 200px; 
+            height: auto; 
+        }
+
+        h1 {
+            color: #3f0303; 
+            font-size: 4em;
+            margin: 20px 0; 
+            border: 10px;
+        }
+
+        h2 {
+            color: #000000;
+            margin-bottom: 50px;
+        }
+
+        .button-container {
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button {
+            background-color: #058139; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            padding: 10px 20px; 
+            font-size: 1.2em; 
+            cursor: pointer; 
+            text-decoration: none; 
+        }
+
+        .button:hover {
+            background-color: #045827; 
+        }
+
+        .text-input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #666666;
+            font-size: 1em;
+            width: 250px; 
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+    <img src="assets/hogwarts_logo.png" alt="Hogwarts Logo" class="logo">
+    <div class="content-wrapper">
+        <h1>HOGWARTS SCHOOL</h1>
+        <h2>Confira a base de dados de alunos matriculados na escola de magia de Hogwarts!</h2>
+        <div class="button-container">
+            <div class="button-group">
+                <input type="text" class="text-input" id="nomeCasa" placeholder="Digite o nome da casa">
+                <a href="#" id="buscarAluno" class="button">Buscar aluno por casa</a>
+            </div>
+            <div class="button-group">
+                <input type="text" class="text-input"  placeholder="Digite a idade">
+                <a href="#"  class="button">Buscar aluno por idade</a>
+            </div>
+
+            <div id="resultados"></div>
+
+            <script>
+                document.getElementById('buscarAluno').addEventListener('click', function(e) {
+                    e.preventDefault(); // Evita o comportamento padrão do botão/link
+        
+                    // Captura o valor do input
+                    var casaId = document.getElementById('nomeCasa').value;
+        
+                    // Valida se o campo de entrada não está vazio
+                    if (!casaId) {
+                        alert("Por favor, insira o ID da casa.");
+                        return;
+                    }
+        
+                    // Faz a requisição para a API usando Fetch
+                    fetch(`http://localhost:8080/students/house/` + casaId, {
+                        method: 'GET',
+                    })
+                    .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro ao chamar API: ${response.statusText}`);
+                }
+                return response.json(); // Garante que a resposta seja convertida para JSON
+            })
+            .then(data => {
+                // Manipula a resposta da API e exibe os resultados
+                let resultadosDiv = document.getElementById('resultados');
+                resultadosDiv.innerHTML = ''; // Limpa resultados anteriores
+
+                // Verifica se a resposta contém alunos (um array)
+                if (data && Array.isArray(data) && data.length > 0) {
+                    let tabela = document.createElement('table');
+                    let cabecalho = `
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Data de Nascimento</th>
+                            <th>Casa</th>
+                            <th>Feitiço</th>
+                            <th>Data de Inscrição</th>
+                        </tr>
+                    `;
+                    tabela.innerHTML = cabecalho;
+
+                    // Preenche a tabela com os dados dos alunos
+                    data.forEach(aluno => {
+                        let linha = `
+                            <tr>
+                                <td>${aluno.id}</td>
+                                <td>${aluno.name}</td>
+                                <td>${aluno.age}</td>
+                                <td>${new Date(aluno.birthDate).toLocaleDateString()}</td>
+                                <td>${aluno.house}</td>
+                                <td>${aluno.magic}</td>
+                                <td>${new Date(aluno.subscriptionDate).toLocaleDateString()}</td>
+                            </tr>
+                        `;
+                        tabela.innerHTML += linha;
+                    });
+
+                    resultadosDiv.appendChild(tabela);
+                } else {
+                    resultadosDiv.textContent = "Nenhum aluno encontrado.";
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert("Ocorreu um erro ao buscar os alunos. Veja o console para detalhes.");
+            });
+        });
+    </script>
+        </div>
+    </div>
+</body>
+</html>

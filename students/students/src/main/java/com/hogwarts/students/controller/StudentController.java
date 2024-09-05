@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/students")
+@CrossOrigin(origins = "http://127.0.0.1:5500") // Permite a origem do seu frontend
 public class StudentController {
 
     @Autowired
@@ -30,7 +31,7 @@ public class StudentController {
     @GetMapping(value = "/house/{house}")
     public ResponseEntity<List<StudentDTO>> findByHouse(@PathVariable String house) {
         if (house.matches("\\d+")) {
-            throw new InvalidHouseException("Casa não encontrada. Por favor insira um nome de casa válido!");
+            throw new InvalidHouseException("Por favor insira um nome de casa válido!");
         }
         List<StudentDTO> dtos = service.findByHouse(house);
         return ResponseEntity.ok(dtos);
@@ -41,7 +42,6 @@ public class StudentController {
         List<StudentDTO> dtos = service.findByAge(age);
         return ResponseEntity.ok(dtos);
     }
-
 
     @GetMapping
     public ResponseEntity <Page<StudentDTO>> findAll(Pageable pageable) {

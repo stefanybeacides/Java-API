@@ -36,7 +36,7 @@ public class ControllerExceptionHandler {
    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<CustomError> typeMismatch(MethodArgumentTypeMismatchException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        String errorMessage = "ID inválido. Deve ser um número!";
+        String errorMessage = "Formato inválido. Deve ser um número!";
         CustomError err = new CustomError(Instant.now(), status.value(), errorMessage, request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }

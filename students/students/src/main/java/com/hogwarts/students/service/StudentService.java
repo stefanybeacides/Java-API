@@ -67,7 +67,7 @@ public class StudentService {
             return new StudentDTO(entity);
         }
         catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException("Não foi possível encontrar o aluno!");
+            throw new ResourceNotFoundException("Não foi possível encontrar o aluno, ID inexistente!");
         }
     }
 
